@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Poojitha Katru - Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Color Palette 1 - Teal & Terracotta */
+            --dark-teal: #003135;
+            --medium-teal: #024950;
+            --terracotta: #964734;
+            --bright-cyan: #0FA4AF;
+            --light-mint: #AFDDE5;
+            
+            /* Color Palette 2 - Earth Tones */
+            --dark-brown: #3E362E;
+            --bronze: #865D36;
+            --sand: #93785B;
+            --tan: #AC8968;
+            --warm-grey: #A69080;
+            
+            /* Color Palette 3 - Peach & Teal */
+            --deep-teal: #2C3531;
+            --ocean-teal: #116466;
+            --warm-peach: #D9B08C;
+            --soft-peach: #FFCB9A;
+            --powder-blue: #D1E8E2;
+            
+            /* Primary palette for design */
+            --primary: #0FA4AF;
+            --secondary: #964734;
+            --accent: #D9B08C;
+            --dark: #2C3531;
+            --light: #AFDDE5;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: linear-gradient(135deg, var(--dark-teal) 0%, var(--deep-teal) 50%, #1a1a1a 100%);
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 80px;
+            height: 100vh;
+            background: rgba(44, 53, 49, 0.95);
+            backdrop-filter: blur(10px);
+            border-right: 2px solid var(--primary);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 0;
+            z-index: 1000;
+            box-shadow: 4px 0 20px rgba(15, 164, 175, 0.3);
+        }
+
+        .sidebar-logo {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Sora', sans-serif;
+            font-weight: 800;
+            font-size: 1.5rem;
+            color: var(--dark);
+            margin-bottom: 3rem;
+            box-shadow: 0 4px 15px rgba(15, 164, 175, 0.4);
+        }
+
+        .nav-items {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .nav-item {
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            color: var(--light);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            font-size: 1.3rem;
+            cursor: pointer;
+        }
+
+        .nav-item:hover {
+            background: var(--primary);
+            color: var(--dark);
+            transform: translateX(5px);
+            box-shadow: 0 4px 15px rgba(15, 164, 175, 0.5);
+        }
+
+        .nav-item.active {
+            background: var(--primary);
+            color: var(--dark);
+        }
+
+        .nav-tooltip {
+            position: absolute;
+            left: 70px;
+            background: var(--primary);
+            color: var(--dark);
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            white-space: nowrap;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-item:hover .nav-tooltip {
+            opacity: 1;
+        }
+
+        /* Main Content Area */
+        .main-content {
+            margin-left: 80px;
+            min-height: 100vh;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 4rem 6rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 700px;
+            z-index: 10;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            background: rgba(15, 164, 175, 0.2);
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            padding: 0.5rem 1.5rem;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            letter-spacing: 1px;
+        }
+
+        .hero h1 {
+            font-family: 'Sora', sans-serif;
+            font-size: 5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--light), var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.8rem;
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 3rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .btn-primary {
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--ocean-teal));
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-family: 'Sora', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(15, 164, 175, 0.4);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(15, 164, 175, 0.6);
+        }
+
+        .btn-secondary {
+            padding: 1rem 2.5rem;
+            background: transparent;
+            color: var(--accent);
+            border: 2px solid var(--accent);
+            border-radius: 50px;
+            font-family: 'Sora', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-secondary:hover {
+            background: var(--accent);
+            color: var(--dark);
+            transform: translateY(-3px);
+        }
+
+        /* 3D F1 Car Container */
+        .f1-container {
+            position: absolute;
+            right: 5%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 600px;
+            height: 600px;
+            perspective: 1500px;
+        }
+
+        #f1-car {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Racing Lines Decoration */
+        .racing-line {
+            position: absolute;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+            animation: racingLine 3s ease-in-out infinite;
+        }
+
+        @keyframes racingLine {
+            0% {
+                width: 0;
+                left: 0;
+            }
+            50% {
+                width: 300px;
+                left: 50%;
+            }
+            100% {
+                width: 0;
+                left: 100%;
+            }
+        }
+
+        /* Section Styling */
+        section {
+            padding: 6rem 6rem;
+            min-height: 100vh;
+        }
+
+        .section-header {
+            margin-bottom: 4rem;
+        }
+
+        .section-tag {
+            font-size: 0.9rem;
+            color: var(--primary);
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-family: 'Sora', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .section-description {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.6);
+            max-width: 600px;
+        }
+
+        /* About Section */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            line-height: 2;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, rgba(15, 164, 175, 0.1), rgba(150, 71, 52, 0.1));
+            border: 1px solid rgba(15, 164, 175, 0.3);
+            padding: 2rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(15, 164, 175, 0.3);
+        }
+
+        .stat-number {
+            font-family: 'Sora', sans-serif;
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 600;
+        }
+
+        /* Skills Section */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: linear-gradient(135deg, rgba(44, 53, 49, 0.8), rgba(17, 100, 102, 0.3));
+            border: 1px solid rgba(15, 164, 175, 0.3);
+            border-radius: 20px;
+            padding: 2.5rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 15px 40px rgba(15, 164, 175, 0.3);
+        }
+
+        .skill-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--ocean-teal));
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .skill-category h3 {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.5rem;
+            color: var(--light);
+            margin-bottom: 1rem;
+        }
+
+        .skill-list {
+            list-style: none;
+            line-height: 2;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .skill-list li::before {
+            content: "→";
+            color: var(--primary);
+            margin-right: 0.5rem;
+            font-weight: bold;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .project-card {
+            background: linear-gradient(135deg, rgba(44, 53, 49, 0.9), rgba(17, 100, 102, 0.4));
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid rgba(15, 164, 175, 0.3);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(15, 164, 175, 0.1), rgba(217, 176, 140, 0.1));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .project-card:hover::before {
+            opacity: 1;
+        }
+
+        .project-card:hover {
+            transform: translateY(-12px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 50px rgba(15, 164, 175, 0.4);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 280px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Sora', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-image::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 60%, rgba(44, 53, 49, 0.9) 100%);
+        }
+
+        .project-content {
+            padding: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .project-tag {
+            background: rgba(15, 164, 175, 0.2);
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .project-content h3 {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.6rem;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .project-content p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .project-link:hover {
+            color: var(--primary);
+            gap: 1rem;
+        }
+
+        /* Contact Section */
+        .contact-container {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .contact-card {
+            background: linear-gradient(135deg, rgba(15, 164, 175, 0.1), rgba(150, 71, 52, 0.1));
+            border: 1px solid rgba(15, 164, 175, 0.3);
+            padding: 2.5rem 2rem;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: white;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary);
+            box-shadow: 0 15px 40px rgba(15, 164, 175, 0.3);
+        }
+
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--ocean-teal));
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin: 0 auto 1rem;
+        }
+
+        .contact-card h3 {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-card p {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 6rem;
+            border-top: 1px solid rgba(15, 164, 175, 0.2);
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Responsive */
+        @media (max-width: 1200px) {
+            .f1-container {
+                width: 450px;
+                height: 450px;
+            }
+
+            .hero h1 {
+                font-size: 4rem;
+            }
+        }
+
+        @media (max-width: 968px) {
+            .sidebar {
+                width: 100%;
+                height: 70px;
+                flex-direction: row;
+                padding: 0 2rem;
+                bottom: 0;
+                top: auto;
+                border-right: none;
+                border-top: 2px solid var(--primary);
+            }
+
+            .sidebar-logo {
+                margin-bottom: 0;
+                margin-right: auto;
+            }
+
+            .nav-items {
+                flex-direction: row;
+                gap: 1rem;
+            }
+
+            .main-content {
+                margin-left: 0;
+                margin-bottom: 70px;
+            }
+
+            .hero {
+                flex-direction: column;
+                padding: 3rem 2rem;
+                text-align: center;
+            }
+
+            .f1-container {
+                position: relative;
+                right: auto;
+                transform: none;
+                margin-top: 3rem;
+            }
+
+            section {
+                padding: 4rem 2rem;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar">
+        <div class="sidebar-logo">PK</div>
+        <div class="nav-items">
+            <a href="#home" class="nav-item active">
+                🏠
+                <span class="nav-tooltip">Home</span>
+            </a>
+            <a href="#about" class="nav-item">
+                👤
+                <span class="nav-tooltip">About</span>
+            </a>
+            <a href="#skills" class="nav-item">
+                ⚡
+                <span class="nav-tooltip">Skills</span>
+            </a>
+            <a href="#projects" class="nav-item">
+                💼
+                <span class="nav-tooltip">Projects</span>
+            </a>
+            <a href="#contact" class="nav-item">
+                📧
+                <span class="nav-tooltip">Contact</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="racing-line" style="top: 20%;"></div>
+            <div class="racing-line" style="top: 80%; animation-delay: 1s;"></div>
+            
+            <div class="hero-content">
+                <div class="hero-tag">🏎️ FULL STACK DEVELOPER</div>
+                <h1>Hey, I'm<br>Poojitha</h1>
+                <div class="hero-subtitle">Building Fast, Beautiful Experiences</div>
+                <p>F1 enthusiast turned developer. I build lightning-fast web applications with the precision of a pit crew and the passion of a race day. Let's create something incredible together.</p>
+                <div class="cta-buttons">
+                    <a href="#projects" class="btn-primary">View My Work →</a>
+                    <a href="#contact" class="btn-secondary">Let's Connect</a>
+                </div>
+            </div>
+
+            <div class="f1-container">
+                <canvas id="f1-car"></canvas>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about">
+            <div class="section-header">
+                <div class="section-tag">ABOUT ME</div>
+                <h2 class="section-title">More Than Just Code</h2>
+                <p class="section-description">Passionate developer with a love for speed, precision, and beautiful design</p>
+            </div>
+
+            <div class="about-grid">
+                <div class="about-text">
+                    <p>Hi! I'm Poojitha Katru, a developer who believes in building experiences that are as smooth as a perfectly executed overtake. Just like in Formula 1, I'm obsessed with optimization, performance, and pushing things to their limits.</p>
+                    <p>When I'm not coding, you'll find me watching F1 races, analyzing telemetry data, or debating the perfect racing line through Turn 3 at Silverstone. I bring that same analytical mindset and attention to detail to every project I work on.</p>
+                    <p>I specialize in creating fast, responsive web applications that don't just work—they excel. Every millisecond counts, whether it's a pit stop or a page load.</p>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">Projects Completed</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">3+</div>
+                        <div class="stat-label">Years Experience</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">∞</div>
+                        <div class="stat-label">Races Watched</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Dedication</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills">
+            <div class="section-header">
+                <div class="section-tag">TECHNICAL SKILLS</div>
+                <h2 class="section-title">My Toolbox</h2>
+                <p class="section-description">Technologies I use to bring ideas to life</p>
+            </div>
+
+            <div class="skills-container">
+                <div class="skill-category">
+                    <div class="skill-icon">⚛️</div>
+                    <h3>Frontend</h3>
+                    <ul class="skill-list">
+                        <li>React & Next.js</li>
+                        <li>TypeScript</li>
+                        <li>HTML5 & CSS3</li>
+                        <li>Tailwind CSS</li>
+                        <li>Three.js</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <div class="skill-icon">⚙️</div>
+                    <h3>Backend</h3>
+                    <ul class="skill-list">
+                        <li>Node.js & Express</li>
+                        <li>Python & Django</li>
+                        <li>REST APIs</li>
+                        <li>GraphQL</li>
+                        <li>JWT Auth</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <div class="skill-icon">🗄️</div>
+                    <h3>Database</h3>
+                    <ul class="skill-list">
+                        <li>MongoDB</li>
+                        <li>PostgreSQL</li>
+                        <li>MySQL</li>
+                        <li>Firebase</li>
+                        <li>Redis</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <div class="skill-icon">🛠️</div>
+                    <h3>Tools & More</h3>
+                    <ul class="skill-list">
+                        <li>Git & GitHub</li>
+                        <li>Docker</li>
+                        <li>AWS & Vercel</li>
+                        <li>CI/CD</li>
+                        <li>Figma</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects">
+            <div class="section-header">
+                <div class="section-tag">MY WORK</div>
+                <h2 class="section-title">Featured Projects</h2>
+                <p class="section-description">A collection of projects I'm proud of</p>
+            </div>
+
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-image" style="background: linear-gradient(135deg, #0FA4AF, #024950);">
+                        PROJECT 01
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span class="project-tag">React</span>
+                            <span class="project-tag">Node.js</span>
+                            <span class="project-tag">MongoDB</span>
+                        </div>
+                        <h3>Project Name Here</h3>
+                        <p>A brief description of your amazing project. What problem does it solve? What makes it special? Add your project details here.</p>
+                        <a href="#" class="project-link">View Project →</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image" style="background: linear-gradient(135deg, #964734, #865D36);">
+                        PROJECT 02
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span class="project-tag">Next.js</span>
+                            <span class="project-tag">TypeScript</span>
+                            <span class="project-tag">Firebase</span>
+                        </div>
+                        <h3>Project Name Here</h3>
+                        <p>A brief description of your amazing project. What problem does it solve? What makes it special? Add your project details here.</p>
+                        <a href="#" class="project-link">View Project →</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image" style="background: linear-gradient(135deg, #D9B08C, #FFCB9A);">
+                        PROJECT 03
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span class="project-tag">Python</span>
+                            <span class="project-tag">Django</span>
+                            <span class="project-tag">PostgreSQL</span>
+                        </div>
+                        <h3>Project Name Here</h3>
+                        <p>A brief description of your amazing project. What problem does it solve? What makes it special? Add your project details here.</p>
+                        <a href="#" class="project-link">View Project →</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image" style="background: linear-gradient(135deg, #116466, #2C3531);">
+                        PROJECT 04
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span class="project-tag">React</span>
+                            <span class="project-tag">Three.js</span>
+                            <span class="project-tag">WebGL</span>
+                        </div>
+                        <h3>Project Name Here</h3>
+                        <p>A brief description of your amazing project. What problem does it solve? What makes it special? Add your project details here.</p>
+                        <a href="#" class="project-link">View Project →</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image" style="background: linear-gradient(135deg, #AFDDE5, #0FA4AF);">
+                        PROJECT 05
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span class="project-tag">Vue.js</span>
+                            <span class="project-tag">Express</span>
+                            <span class="project-tag">MySQL</span>
+                        </div>
+                        <h3>Project Name Here</h3>
+                        <p>A brief description of your amazing project. What problem does it solve? What makes it special? Add your project details here.</p>
+                        <a href="#" class="project-link">View Project →</a>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-image" style="background: linear-gradient(135deg, #93785B, #AC8968);">
+                        PROJECT 06
+                    </div>
+                    <div class="project-content">
+                        <div class="project-tags">
+                            <span class="project-tag">React Native</span>
+                            <span class="project-tag">Firebase</span>
+                            <span class="project-tag">Redux</span>
+                        </div>
+                        <h3>Project Name Here</h3>
+                        <p>A brief description of your amazing project. What problem does it solve? What makes it special? Add your project details here.</p>
+                        <a href="#" class="project-link">View Project →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <div class="contact-container">
+                <div class="section-header">
+                    <div class="section-tag">GET IN TOUCH</div>
+                    <h2 class="section-title">Let's Work Together</h2>
+                    <p class="section-description">Have a project in mind? Let's build something amazing together</p>
+                </div>
+
+                <div class="contact-grid">
+                    <a href="mailto:your.email@example.com" class="contact-card">
+                        <div class="contact-icon">📧</div>
+                        <h3>Email</h3>
+                        <p>your.email@example.com</p>
+                    </a>
+
+                    <a href="https://github.com/yourusername" class="contact-card" target="_blank">
+                        <div class="contact-icon">💻</div>
+                        <h3>GitHub</h3>
+                        <p>@yourusername</p>
+                    </a>
+
+                    <a href="https://linkedin.com/in/yourusername" class="contact-card" target="_blank">
+                        <div class="contact-icon">💼</div>
+                        <h3>LinkedIn</h3>
+                        <p>Connect with me</p>
+                    </a>
+
+                    <a href="https://twitter.com/yourusername" class="contact-card" target="_blank">
+                        <div class="contact-icon">🐦</div>
+                        <h3>Twitter</h3>
+                        <p>@yourusername</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer>
+            <p>&copy; 2026 Poojitha Katru. Built with passion, precision, and a love for speed 🏎️</p>
+        </footer>
+    </div>
+
+    <!-- Three.js for 3D F1 Car -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        // Navigation active state
+        const navItems = document.querySelectorAll('.nav-item');
+        const sections = document.querySelectorAll('section');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navItems.forEach(item => {
+                item.classList.remove('active');
+                if (item.getAttribute('href') === `#${current}`) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        // Smooth scrolling
+        navItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = document.querySelector(item.getAttribute('href'));
+                target.scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // Three.js F1 Car
+        const canvas = document.getElementById('f1-car');
+        const scene = new THREE.Scene();
+        
+        const camera = new THREE.PerspectiveCamera(75, canvas.offsetWidth / canvas.offsetHeight, 0.1, 1000);
+        camera.position.z = 10;
+        camera.position.y = 3;
+
+        const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+        renderer.setSize(canvas.offsetWidth, canvas.offsetHeight);
+        renderer.shadowMap.enabled = true;
+
+        // Lighting
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+        scene.add(ambientLight);
+
+        const directionalLight = new THREE.DirectionalLight(0x0FA4AF, 1.5);
+        directionalLight.position.set(5, 5, 5);
+        directionalLight.castShadow = true;
+        scene.add(directionalLight);
+
+        const pointLight1 = new THREE.PointLight(0x0FA4AF, 1, 50);
+        pointLight1.position.set(-5, 3, 5);
+        scene.add(pointLight1);
+
+        const pointLight2 = new THREE.PointLight(0xD9B08C, 1, 50);
+        pointLight2.position.set(5, 3, -5);
+        scene.add(pointLight2);
+
+        // Create F1 Car
+        function createF1Car() {
+            const car = new THREE.Group();
+
+            // Main chassis - sleek and low
+            const chassisGeometry = new THREE.BoxGeometry(5, 0.6, 2.2);
+            const chassisMaterial = new THREE.MeshPhongMaterial({ 
+                color: 0x0FA4AF,
+                shininess: 150,
+                specular: 0x0FA4AF,
+                emissive: 0x024950
+            });
+            const chassis = new THREE.Mesh(chassisGeometry, chassisMaterial);
+            chassis.position.y = 0.7;
+            chassis.castShadow = true;
+            car.add(chassis);
+
+            // Cockpit/Halo
+            const cockpitGeometry = new THREE.BoxGeometry(2, 0.8, 1.8);
+            const cockpitMaterial = new THREE.MeshPhongMaterial({ 
+                color: 0x2C3531,
+                shininess: 200,
+                transparent: true,
+                opacity: 0.9
+            });
+            const cockpit = new THREE.Mesh(cockpitGeometry, cockpitMaterial);
+            cockpit.position.y = 1.3;
+            cockpit.position.x = -0.5;
+            cockpit.castShadow = true;
+            car.add(cockpit);
+
+            // Front nose cone
+            const noseGeometry = new THREE.ConeGeometry(0.3, 2, 4);
+            const noseMaterial = new THREE.MeshPhongMaterial({ 
+                color: 0xD9B08C,
+                emissive: 0x93785B,
+                shininess: 100
+            });
+            const nose = new THREE.Mesh(noseGeometry, noseMaterial);
+            nose.rotation.z = Math.PI / 2;
+            nose.position.x = 3.5;
+            nose.position.y = 0.7;
+            car.add(nose);
+
+            // Rear wing
+            const wingGeometry = new THREE.BoxGeometry(0.3, 1.2, 3);
+            const wingMaterial = new THREE.MeshPhongMaterial({ 
+                color: 0x0FA4AF,
+                shininess: 100
+            });
+            const wing = new THREE.Mesh(wingGeometry, wingMaterial);
+            wing.position.y = 1.8;
+            wing.position.x = -2.3;
+            car.add(wing);
+
+            // Wing support
+            const supportGeometry = new THREE.CylinderGeometry(0.1, 0.1, 1.2, 8);
+            const supportMaterial = new THREE.MeshPhongMaterial({ 
+                color: 0x2C3531
+            });
+            const support1 = new THREE.Mesh(supportGeometry, supportMaterial);
+            support1.position.set(-2.3, 1.2, 1);
+            car.add(support1);
+
+            const support2 = new THREE.Mesh(supportGeometry, supportMaterial);
+            support2.position.set(-2.3, 1.2, -1);
+            car.add(support2);
+
+            // Wheels with F1 style
+            const wheelGeometry = new THREE.CylinderGeometry(0.5, 0.5, 0.4, 32);
+            const wheelMaterial = new THREE.MeshPhongMaterial({ 
+                color: 0x1a1a1a,
+                shininess: 30
+            });
+
+            const rimGeometry = new THREE.CylinderGeometry(0.35, 0.35, 0.45, 32);
+            const rimMaterial = new THREE.MeshPhongMaterial({ 
+                color: 0x964734,
+                emissive: 0x3E362E,
+                shininess: 120
+            });
+
+            const wheelPositions = [
+                { x: 2, z: 1.4 },
+                { x: 2, z: -1.4 },
+                { x: -2, z: 1.4 },
+                { x: -2, z: -1.4 }
+            ];
+
+            wheelPositions.forEach(pos => {
+                const wheel = new THREE.Mesh(wheelGeometry, wheelMaterial);
+                wheel.rotation.z = Math.PI / 2;
+                wheel.position.set(pos.x, 0.5, pos.z);
+                wheel.castShadow = true;
+                car.add(wheel);
+
+                const rim = new THREE.Mesh(rimGeometry, rimMaterial);
+                rim.rotation.z = Math.PI / 2;
+                rim.position.set(pos.x, 0.5, pos.z);
+                car.add(rim);
+            });
+
+            // Side pods
+            const sidePodGeometry = new THREE.BoxGeometry(2.5, 0.5, 0.8);
+            const sidePodMaterial = new THREE.MeshPhongMaterial({ 
+                color: 0x116466,
+                shininess: 100
+            });
+
+            const sidePod1 = new THREE.Mesh(sidePodGeometry, sidePodMaterial);
+            sidePod1.position.set(0, 0.7, 1.6);
+            car.add(sidePod1);
+
+            const sidePod2 = new THREE.Mesh(sidePodGeometry, sidePodMaterial);
+            sidePod2.position.set(0, 0.7, -1.6);
+            car.add(sidePod2);
+
+            // DRS flap
+            const drsGeometry = new THREE.BoxGeometry(0.1, 0.6, 2.8);
+            const drsMaterial = new THREE.MeshPhongMaterial({ 
+                color: 0xFFCB9A,
+                emissive: 0xD9B08C,
+                shininess: 100
+            });
+            const drs = new THREE.Mesh(drsGeometry, drsMaterial);
+            drs.position.set(-2.3, 2.1, 0);
+            car.add(drs);
+
+            // Underglow effect
+            const underglowGeometry = new THREE.PlaneGeometry(5, 2.5);
+            const underglowMaterial = new THREE.MeshBasicMaterial({ 
+                color: 0x0FA4AF,
+                transparent: true,
+                opacity: 0.4,
+                side: THREE.DoubleSide
+            });
+            const underglow = new THREE.Mesh(underglowGeometry, underglowMaterial);
+            underglow.rotation.x = Math.PI / 2;
+            underglow.position.y = 0.1;
+            car.add(underglow);
+
+            return car;
+        }
+
+        const f1Car = createF1Car();
+        scene.add(f1Car);
+
+        // Mouse interaction
+        let mouseX = 0;
+        let mouseY = 0;
+
+        document.addEventListener('mousemove', (event) => {
+            mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+            mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+        });
+
+        // Animation loop
+        function animate() {
+            requestAnimationFrame(animate);
+
+            // Smooth rotation based on mouse
+            f1Car.rotation.y += (mouseX * 0.5 - f1Car.rotation.y) * 0.05;
+            f1Car.rotation.x += (mouseY * 0.3 - f1Car.rotation.x) * 0.05;
+
+            // Auto-rotate
+            f1Car.rotation.y += 0.005;
+
+            // Floating animation
+            f1Car.position.y = Math.sin(Date.now() * 0.001) * 0.3;
+
+            renderer.render(scene, camera);
+        }
+
+        animate();
+
+        // Responsive
+        window.addEventListener('resize', () => {
+            const width = canvas.offsetWidth;
+            const height = canvas.offsetHeight;
+            camera.aspect = width / height;
+            camera.updateProjectionMatrix();
+            renderer.setSize(width, height);
+        });
+    </script>
+</body>
+</html>
