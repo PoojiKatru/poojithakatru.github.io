@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Poojitha Katru  Portfolio</title>
+    <title>Poojitha Katru - Portfolio</title>
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800&family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         * {
@@ -256,9 +256,193 @@
             perspective: 1500px;
         }
 
-        #f1-car {
+        .f1-car-wrapper {
             width: 100%;
             height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform-style: preserve-3d;
+            animation: carFloat 4s ease-in-out infinite;
+        }
+
+        @keyframes carFloat {
+            0%, 100% {
+                transform: translateY(0) rotateY(0deg);
+            }
+            25% {
+                transform: translateY(-20px) rotateY(5deg);
+            }
+            50% {
+                transform: translateY(0) rotateY(0deg);
+            }
+            75% {
+                transform: translateY(-20px) rotateY(-5deg);
+            }
+        }
+
+        /* CSS 3D F1 Car */
+        .f1-car {
+            position: relative;
+            width: 400px;
+            height: 200px;
+            transform-style: preserve-3d;
+            animation: carRotate 20s linear infinite;
+        }
+
+        @keyframes carRotate {
+            0% {
+                transform: rotateY(0deg) rotateX(10deg);
+            }
+            100% {
+                transform: rotateY(360deg) rotateX(10deg);
+            }
+        }
+
+        /* Car Body */
+        .car-body {
+            position: absolute;
+            width: 300px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary), var(--ocean-teal));
+            border-radius: 10px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) translateZ(30px);
+            box-shadow: 0 20px 60px rgba(15, 164, 175, 0.6);
+        }
+
+        .car-body::before {
+            content: '';
+            position: absolute;
+            width: 150px;
+            height: 60px;
+            background: linear-gradient(135deg, rgba(44, 53, 49, 0.9), rgba(17, 100, 102, 0.8));
+            border-radius: 8px;
+            top: -30px;
+            left: 50px;
+            box-shadow: inset 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Rear Wing */
+        .rear-wing {
+            position: absolute;
+            width: 20px;
+            height: 100px;
+            background: var(--primary);
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%) translateZ(35px);
+            border-radius: 5px;
+            box-shadow: 0 10px 30px rgba(15, 164, 175, 0.5);
+        }
+
+        .rear-wing::after {
+            content: '';
+            position: absolute;
+            width: 150px;
+            height: 15px;
+            background: linear-gradient(135deg, var(--accent), var(--soft-peach));
+            top: -40px;
+            left: -10px;
+            border-radius: 5px;
+        }
+
+        /* Front Nose */
+        .front-nose {
+            position: absolute;
+            width: 80px;
+            height: 30px;
+            background: linear-gradient(135deg, var(--accent), var(--warm-peach));
+            clip-path: polygon(100% 50%, 0 0, 0 100%);
+            top: 50%;
+            right: -30px;
+            transform: translateY(-50%) translateZ(35px);
+            box-shadow: 0 5px 20px rgba(217, 176, 140, 0.5);
+        }
+
+        /* Wheels */
+        .wheel {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle, var(--terracotta), var(--dark-brown));
+            border-radius: 50%;
+            border: 8px solid #1a1a1a;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5), inset 0 2px 10px rgba(150, 71, 52, 0.8);
+            animation: wheelSpin 1s linear infinite;
+        }
+
+        @keyframes wheelSpin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .wheel-fl {
+            top: -20px;
+            right: 50px;
+            transform: translateZ(50px);
+        }
+
+        .wheel-fr {
+            top: -20px;
+            right: 50px;
+            transform: translateZ(15px);
+        }
+
+        .wheel-rl {
+            bottom: -20px;
+            left: 50px;
+            transform: translateZ(50px);
+        }
+
+        .wheel-rr {
+            bottom: -20px;
+            left: 50px;
+            transform: translateZ(15px);
+        }
+
+        /* Underglow */
+        .underglow {
+            position: absolute;
+            width: 320px;
+            height: 100px;
+            background: radial-gradient(ellipse, rgba(15, 164, 175, 0.6), transparent);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) translateZ(10px);
+            filter: blur(20px);
+            animation: glowPulse 2s ease-in-out infinite;
+        }
+
+        @keyframes glowPulse {
+            0%, 100% {
+                opacity: 0.6;
+                transform: translate(-50%, -50%) translateZ(10px) scale(1);
+            }
+            50% {
+                opacity: 1;
+                transform: translate(-50%, -50%) translateZ(10px) scale(1.1);
+            }
+        }
+
+        /* Decorative racing stripes */
+        .racing-stripe {
+            position: absolute;
+            width: 280px;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) translateZ(40px);
+        }
+
+        .racing-stripe:nth-child(2) {
+            transform: translate(-50%, calc(-50% + 20px)) translateZ(40px);
         }
 
         /* Racing Lines Decoration */
@@ -715,7 +899,21 @@
             </div>
 
             <div class="f1-container">
-                <canvas id="f1-car"></canvas>
+                <div class="f1-car-wrapper">
+                    <div class="f1-car">
+                        <div class="underglow"></div>
+                        <div class="car-body">
+                            <div class="racing-stripe"></div>
+                            <div class="racing-stripe"></div>
+                        </div>
+                        <div class="rear-wing"></div>
+                        <div class="front-nose"></div>
+                        <div class="wheel wheel-fl"></div>
+                        <div class="wheel wheel-fr"></div>
+                        <div class="wheel wheel-rl"></div>
+                        <div class="wheel wheel-rr"></div>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -931,10 +1129,10 @@
                 </div>
 
                 <div class="contact-grid">
-                    <a href="mailto:your.email@example.com" class="contact-card">
+                    <a href="/cdn-cgi/l/email-protection#136a7c66613d767e727a7f53766b727e637f763d707c7e" class="contact-card">
                         <div class="contact-icon">📧</div>
                         <h3>Email</h3>
-                        <p>your.email@example.com</p>
+                        <p><span class="__cf_email__" data-cfemail="6910061c1b470c04080005290c11080419050c470a0604">[email&#160;protected]</span></p>
                     </a>
 
                     <a href="https://github.com/yourusername" class="contact-card" target="_blank">
@@ -965,7 +1163,12 @@
     </div>
 
     <!-- Three.js for 3D F1 Car -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        // Navigation active state
+        const navItems = document.querySelectorAll('.nav-item');
+        const sections = document.querySelectorAll('section');
+
     <script>
         // Navigation active state
         const navItems = document.querySelectorAll('.nav-item');
@@ -994,221 +1197,19 @@
             item.addEventListener('click', (e) => {
                 e.preventDefault();
                 const target = document.querySelector(item.getAttribute('href'));
-                target.scrollIntoView({ behavior: 'smooth' });
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
             });
         });
 
-        // Three.js F1 Car
-        const canvas = document.getElementById('f1-car');
-        const scene = new THREE.Scene();
-        
-        const camera = new THREE.PerspectiveCamera(75, canvas.offsetWidth / canvas.offsetHeight, 0.1, 1000);
-        camera.position.z = 10;
-        camera.position.y = 3;
-
-        const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
-        renderer.setSize(canvas.offsetWidth, canvas.offsetHeight);
-        renderer.shadowMap.enabled = true;
-
-        // Lighting
-        const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
-        scene.add(ambientLight);
-
-        const directionalLight = new THREE.DirectionalLight(0x0FA4AF, 1.5);
-        directionalLight.position.set(5, 5, 5);
-        directionalLight.castShadow = true;
-        scene.add(directionalLight);
-
-        const pointLight1 = new THREE.PointLight(0x0FA4AF, 1, 50);
-        pointLight1.position.set(-5, 3, 5);
-        scene.add(pointLight1);
-
-        const pointLight2 = new THREE.PointLight(0xD9B08C, 1, 50);
-        pointLight2.position.set(5, 3, -5);
-        scene.add(pointLight2);
-
-        // Create F1 Car
-        function createF1Car() {
-            const car = new THREE.Group();
-
-            // Main chassis - sleek and low
-            const chassisGeometry = new THREE.BoxGeometry(5, 0.6, 2.2);
-            const chassisMaterial = new THREE.MeshPhongMaterial({ 
-                color: 0x0FA4AF,
-                shininess: 150,
-                specular: 0x0FA4AF,
-                emissive: 0x024950
-            });
-            const chassis = new THREE.Mesh(chassisGeometry, chassisMaterial);
-            chassis.position.y = 0.7;
-            chassis.castShadow = true;
-            car.add(chassis);
-
-            // Cockpit/Halo
-            const cockpitGeometry = new THREE.BoxGeometry(2, 0.8, 1.8);
-            const cockpitMaterial = new THREE.MeshPhongMaterial({ 
-                color: 0x2C3531,
-                shininess: 200,
-                transparent: true,
-                opacity: 0.9
-            });
-            const cockpit = new THREE.Mesh(cockpitGeometry, cockpitMaterial);
-            cockpit.position.y = 1.3;
-            cockpit.position.x = -0.5;
-            cockpit.castShadow = true;
-            car.add(cockpit);
-
-            // Front nose cone
-            const noseGeometry = new THREE.ConeGeometry(0.3, 2, 4);
-            const noseMaterial = new THREE.MeshPhongMaterial({ 
-                color: 0xD9B08C,
-                emissive: 0x93785B,
-                shininess: 100
-            });
-            const nose = new THREE.Mesh(noseGeometry, noseMaterial);
-            nose.rotation.z = Math.PI / 2;
-            nose.position.x = 3.5;
-            nose.position.y = 0.7;
-            car.add(nose);
-
-            // Rear wing
-            const wingGeometry = new THREE.BoxGeometry(0.3, 1.2, 3);
-            const wingMaterial = new THREE.MeshPhongMaterial({ 
-                color: 0x0FA4AF,
-                shininess: 100
-            });
-            const wing = new THREE.Mesh(wingGeometry, wingMaterial);
-            wing.position.y = 1.8;
-            wing.position.x = -2.3;
-            car.add(wing);
-
-            // Wing support
-            const supportGeometry = new THREE.CylinderGeometry(0.1, 0.1, 1.2, 8);
-            const supportMaterial = new THREE.MeshPhongMaterial({ 
-                color: 0x2C3531
-            });
-            const support1 = new THREE.Mesh(supportGeometry, supportMaterial);
-            support1.position.set(-2.3, 1.2, 1);
-            car.add(support1);
-
-            const support2 = new THREE.Mesh(supportGeometry, supportMaterial);
-            support2.position.set(-2.3, 1.2, -1);
-            car.add(support2);
-
-            // Wheels with F1 style
-            const wheelGeometry = new THREE.CylinderGeometry(0.5, 0.5, 0.4, 32);
-            const wheelMaterial = new THREE.MeshPhongMaterial({ 
-                color: 0x1a1a1a,
-                shininess: 30
-            });
-
-            const rimGeometry = new THREE.CylinderGeometry(0.35, 0.35, 0.45, 32);
-            const rimMaterial = new THREE.MeshPhongMaterial({ 
-                color: 0x964734,
-                emissive: 0x3E362E,
-                shininess: 120
-            });
-
-            const wheelPositions = [
-                { x: 2, z: 1.4 },
-                { x: 2, z: -1.4 },
-                { x: -2, z: 1.4 },
-                { x: -2, z: -1.4 }
-            ];
-
-            wheelPositions.forEach(pos => {
-                const wheel = new THREE.Mesh(wheelGeometry, wheelMaterial);
-                wheel.rotation.z = Math.PI / 2;
-                wheel.position.set(pos.x, 0.5, pos.z);
-                wheel.castShadow = true;
-                car.add(wheel);
-
-                const rim = new THREE.Mesh(rimGeometry, rimMaterial);
-                rim.rotation.z = Math.PI / 2;
-                rim.position.set(pos.x, 0.5, pos.z);
-                car.add(rim);
-            });
-
-            // Side pods
-            const sidePodGeometry = new THREE.BoxGeometry(2.5, 0.5, 0.8);
-            const sidePodMaterial = new THREE.MeshPhongMaterial({ 
-                color: 0x116466,
-                shininess: 100
-            });
-
-            const sidePod1 = new THREE.Mesh(sidePodGeometry, sidePodMaterial);
-            sidePod1.position.set(0, 0.7, 1.6);
-            car.add(sidePod1);
-
-            const sidePod2 = new THREE.Mesh(sidePodGeometry, sidePodMaterial);
-            sidePod2.position.set(0, 0.7, -1.6);
-            car.add(sidePod2);
-
-            // DRS flap
-            const drsGeometry = new THREE.BoxGeometry(0.1, 0.6, 2.8);
-            const drsMaterial = new THREE.MeshPhongMaterial({ 
-                color: 0xFFCB9A,
-                emissive: 0xD9B08C,
-                shininess: 100
-            });
-            const drs = new THREE.Mesh(drsGeometry, drsMaterial);
-            drs.position.set(-2.3, 2.1, 0);
-            car.add(drs);
-
-            // Underglow effect
-            const underglowGeometry = new THREE.PlaneGeometry(5, 2.5);
-            const underglowMaterial = new THREE.MeshBasicMaterial({ 
-                color: 0x0FA4AF,
-                transparent: true,
-                opacity: 0.4,
-                side: THREE.DoubleSide
-            });
-            const underglow = new THREE.Mesh(underglowGeometry, underglowMaterial);
-            underglow.rotation.x = Math.PI / 2;
-            underglow.position.y = 0.1;
-            car.add(underglow);
-
-            return car;
-        }
-
-        const f1Car = createF1Car();
-        scene.add(f1Car);
-
-        // Mouse interaction
-        let mouseX = 0;
-        let mouseY = 0;
-
-        document.addEventListener('mousemove', (event) => {
-            mouseX = (event.clientX / window.innerWidth) * 2 - 1;
-            mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
-        });
-
-        // Animation loop
-        function animate() {
-            requestAnimationFrame(animate);
-
-            // Smooth rotation based on mouse
-            f1Car.rotation.y += (mouseX * 0.5 - f1Car.rotation.y) * 0.05;
-            f1Car.rotation.x += (mouseY * 0.3 - f1Car.rotation.x) * 0.05;
-
-            // Auto-rotate
-            f1Car.rotation.y += 0.005;
-
-            // Floating animation
-            f1Car.position.y = Math.sin(Date.now() * 0.001) * 0.3;
-
-            renderer.render(scene, camera);
-        }
-
-        animate();
-
-        // Responsive
-        window.addEventListener('resize', () => {
-            const width = canvas.offsetWidth;
-            const height = canvas.offsetHeight;
-            camera.aspect = width / height;
-            camera.updateProjectionMatrix();
-            renderer.setSize(width, height);
+        // Add parallax effect to F1 car on scroll
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const f1Car = document.querySelector('.f1-car');
+            if (f1Car) {
+                f1Car.style.transform = `rotateY(${scrolled * 0.1}deg) rotateX(10deg)`;
+            }
         });
     </script>
 </body>
